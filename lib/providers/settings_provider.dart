@@ -2,6 +2,7 @@ import 'package:cubelab/db/models/setting.dart';
 import 'package:cubelab/db/services/settings_service.dart';
 import 'package:cubelab/l10n/general/general_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class SettingsProvider extends ChangeNotifier {
@@ -130,12 +131,33 @@ class SettingsProvider extends ChangeNotifier {
 
   static const ThemeMode themeModeDefaultValue = ThemeMode.system;
 
+  List<int> generateFibonacci(int n) {
+    List<int> fib = [0, 1];
+    for (int i = 2; i < n; i++) {
+      fib.add(fib[i - 1] + fib[i - 2]);
+    }
+    return fib;
+  }
+
   ThemeMode _themeMode = themeModeDefaultValue;
 
   ThemeMode get themeMode => _themeMode;
 
   void setThemeMode(ThemeMode themeMode, {bool persistChange = true}) {
     _themeMode = themeMode;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: themeMode == ThemeMode.dark
+            ? Brightness.light
+            : Brightness.dark,
+        statusBarBrightness: themeMode == ThemeMode.dark
+            ? Brightness.dark
+            : Brightness.light,
+      ),
+    );
+
     notifyListeners();
     if (persistChange) {
       service.setupByName(SettingsService.selectedThemeModeId, themeMode.name);

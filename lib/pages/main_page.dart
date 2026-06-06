@@ -127,7 +127,7 @@ abstract class MainPage extends StatelessWidget {
       backgroundColor: appTheme.backgroundColor,
       body: Column(
         children: [
-          Expanded(child: buildPage(context)),
+          Expanded(child: SafeArea(bottom: false, child: buildPage(context))),
           Container(
             padding: EdgeInsets.only(bottom: bottomInset, top: 12.0),
             decoration: BoxDecoration(color: appTheme.secondaryBackgroundColor),
