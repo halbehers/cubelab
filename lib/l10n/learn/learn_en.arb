@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "menu_caption": "Learn",
+  "@menu_caption": {
+    "description": "Learn menu caption"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "@@locale": "en",
+  "menu_caption": "Settings",
+  "@menu_caption": {
+    "description": "Settings menu caption"
+  },
+  "title": "Settings",
+  "@title": {
+    "description": "Settings page title"
+  },
+  "display": "Display",
+  "@display": {
+    "description": "Setting display caption"
+  },
+  "display_menu_caption": "Display menu caption",
+  "@display_menu_caption": {
+    "description": "Setting display menu caption"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Setting language"
+  },
+  "language_system": "System",
+  "@language_system": {
+    "description": "Setting language system label"
+  },
+  "theme_mode": "Theme Mode",
+  "@theme_mode": {
+    "description": "Setting theme mode"
+  },
+  "theme_mode_dark": "Dark",
+  "@theme_mode_dark": {
+    "description": "Theme mode dark"
+  },
+  "theme_mode_light": "Light",
+  "@theme_mode_light": {
+    "description": "Theme mode light"
+  },
+  "theme_mode_system": "System",
+  "@theme_mode_system": {
+    "description": "Theme mode system"
+  },
+  "effects": "Effects",
+  "@effects": {
+    "description": "Setting effect caption"
+  },
+  "haptics_enabled": "Haptics enabled",
+  "@haptics_enabled": {
+    "description": "Setting enabled haptics"
+  },
+  "reset_button": "Reset settings",
+  "@reset_button": {
+    "description": "Setting reset button"
+  },
+  "reset_button_confirm_content": "Are you sure to reset all settings?",
+  "@reset_button_confirm_content": {
+    "description": "Setting reset confirm content"
+  },
+  "reset_button_confirm_action": "Reset settings",
+  "@reset_button_confirm_action": {
+    "description": "Setting reset confirm action"
+  },
+  "reset_button_confirm_cancel": "Cancel",
+  "@reset_button_confirm_cancel": {
+    "description": "Setting reset confirm cancel"
+  }
+}

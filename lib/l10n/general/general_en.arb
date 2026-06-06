@@ -1,0 +1,23 @@
+{
+  "@@locale": "en",
+  "app_name": "CubeLab",
+  "@app_name": {
+    "description": "Name of the app"
+  },
+  "app_loading": "Loading the app...",
+  "@app_loading": {
+    "description": "App loading text"
+  },
+  "language_en": "English",
+  "@language_en": {
+    "description": "English language"
+  },
+  "language_fr": "French",
+  "@language_fr": {
+    "description": "French language"
+  },
+  "language_es": "Spanish",
+  "@language_es": {
+    "description": "Spanish language"
+  }
+}
