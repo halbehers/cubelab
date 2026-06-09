@@ -105,6 +105,24 @@ abstract class ScanLocalizations {
   /// In en, this message translates to:
   /// **'Scan'**
   String get menu_caption;
+
+  /// Button to enter cube state manually
+  ///
+  /// In en, this message translates to:
+  /// **'Enter manually'**
+  String get enter_manually;
+
+  /// Title of the bottom sheet to enter cube state manually
+  ///
+  /// In en, this message translates to:
+  /// **'New cube state'**
+  String get new_cube_state;
+
+  /// Description of how to enter cube state manually
+  ///
+  /// In en, this message translates to:
+  /// **'Select a color from the palette at the bottom and tap on the cube stickers to set their color. The face is determined by the centered color.'**
+  String get new_cube_state_description;
 }
 
 class _ScanLocalizationsDelegate

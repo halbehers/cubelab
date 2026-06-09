@@ -10,4 +10,14 @@ class ScanLocalizationsFr extends ScanLocalizations {
 
   @override
   String get menu_caption => 'Scan';
+
+  @override
+  String get enter_manually => 'Entrer manuellement';
+
+  @override
+  String get new_cube_state => 'Nouvel état du cube';
+
+  @override
+  String get new_cube_state_description =>
+      'Sélectionnez une couleur dans la palette en bas et touchez les autocollants du cube pour définir leur couleur. La face est déterminée par la couleur centrée.';
 }

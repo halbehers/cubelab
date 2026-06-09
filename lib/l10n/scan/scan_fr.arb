@@ -1,4 +1,7 @@
 {
   "@@locale": "fr",
-  "menu_caption": "Scan"
+  "menu_caption": "Scan",
+  "enter_manually": "Entrer manuellement",
+  "new_cube_state": "Nouvel état du cube",
+  "new_cube_state_description": "Sélectionnez une couleur dans la palette en bas et touchez les autocollants du cube pour définir leur couleur. La face est déterminée par la couleur centrée."
 }

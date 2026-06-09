@@ -14,7 +14,7 @@ import 'package:cubelab/theme/app_theme.dart';
 import 'package:cubelab/theme/theme_colors.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
@@ -48,6 +48,12 @@ AppTheme lightAppTheme = AppTheme(
   pureHighlightColor: ThemeColors.pureWhite,
   dangerColor: ThemeColors.red[600]!,
   dangerBackgroundColor: ThemeColors.red[200]!,
+  cubeBlueColor: ThemeColors.cubeBlue,
+  cubeGreenColor: ThemeColors.cubeGreen,
+  cubeRedColor: ThemeColors.cubeRed,
+  cubeYellowColor: ThemeColors.cubeYellow,
+  cubeOrangeColor: ThemeColors.cubeOrange,
+  cubeWhiteColor: ThemeColors.cubeWhite,
 );
 
 AppTheme darkAppTheme = AppTheme(
@@ -80,6 +86,12 @@ AppTheme darkAppTheme = AppTheme(
   pureHighlightColor: ThemeColors.pureBlack,
   dangerColor: ThemeColors.red[300]!,
   dangerBackgroundColor: ThemeColors.red[600]!,
+  cubeBlueColor: ThemeColors.cubeBlue,
+  cubeGreenColor: ThemeColors.cubeGreen,
+  cubeRedColor: ThemeColors.cubeRed,
+  cubeYellowColor: ThemeColors.cubeYellow,
+  cubeOrangeColor: ThemeColors.cubeOrange,
+  cubeWhiteColor: ThemeColors.cubeWhite,
 );
 
 extension BuildContextExtension on BuildContext {

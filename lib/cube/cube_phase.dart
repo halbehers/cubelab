@@ -1,0 +1,1 @@
+enum CubePhase { initialScramble, cross, f2l, oll, pll, solved }

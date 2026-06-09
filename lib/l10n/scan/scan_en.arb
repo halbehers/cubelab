@@ -3,5 +3,17 @@
   "menu_caption": "Scan",
   "@menu_caption": {
     "description": "Scan menu caption"
+  },
+  "enter_manually": "Enter manually",
+  "@enter_manually": {
+    "description": "Button to enter cube state manually"
+  },
+  "new_cube_state": "New cube state",
+  "@new_cube_state": {
+    "description": "Title of the bottom sheet to enter cube state manually"
+  },
+  "new_cube_state_description": "Select a color from the palette at the bottom and tap on the cube stickers to set their color. The face is determined by the centered color.",
+  "@new_cube_state_description": {
+    "description": "Description of how to enter cube state manually"
   }
 }

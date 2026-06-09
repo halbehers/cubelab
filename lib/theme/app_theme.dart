@@ -32,6 +32,12 @@ class AppTheme extends ThemeExtension<AppTheme> {
     required this.pureHighlightColor,
     required this.dangerColor,
     required this.dangerBackgroundColor,
+    required this.cubeBlueColor,
+    required this.cubeGreenColor,
+    required this.cubeRedColor,
+    required this.cubeYellowColor,
+    required this.cubeOrangeColor,
+    required this.cubeWhiteColor,
   });
 
   final Color backgroundColor;
@@ -63,6 +69,13 @@ class AppTheme extends ThemeExtension<AppTheme> {
   final Color pureHighlightColor;
   final Color dangerColor;
   final Color dangerBackgroundColor;
+
+  final Color cubeBlueColor;
+  final Color cubeGreenColor;
+  final Color cubeRedColor;
+  final Color cubeYellowColor;
+  final Color cubeOrangeColor;
+  final Color cubeWhiteColor;
 
   TextStyle get h1 =>
       TextStyle(color: textColor, fontSize: 28, fontWeight: FontWeight.w600);
@@ -187,6 +200,12 @@ class AppTheme extends ThemeExtension<AppTheme> {
     Color? pureHighlightColor,
     Color? dangerColor,
     Color? dangerBackgroundColor,
+    Color? cubeBlueColor,
+    Color? cubeGreenColor,
+    Color? cubeRedColor,
+    Color? cubeYellowColor,
+    Color? cubeOrangeColor,
+    Color? cubeWhiteColor,
   }) {
     return AppTheme(
       backgroundColor: background ?? backgroundColor,
@@ -232,6 +251,12 @@ class AppTheme extends ThemeExtension<AppTheme> {
       dangerColor: dangerColor ?? this.dangerColor,
       dangerBackgroundColor:
           dangerBackgroundColor ?? this.dangerBackgroundColor,
+      cubeBlueColor: cubeBlueColor ?? this.cubeBlueColor,
+      cubeGreenColor: cubeGreenColor ?? this.cubeGreenColor,
+      cubeRedColor: cubeRedColor ?? this.cubeRedColor,
+      cubeYellowColor: cubeYellowColor ?? this.cubeYellowColor,
+      cubeOrangeColor: cubeOrangeColor ?? this.cubeOrangeColor,
+      cubeWhiteColor: cubeWhiteColor ?? this.cubeWhiteColor,
     );
   }
 
@@ -352,6 +377,18 @@ class AppTheme extends ThemeExtension<AppTheme> {
       dangerBackgroundColor:
           Color.lerp(dangerBackgroundColor, other.dangerBackgroundColor, t) ??
           Colors.black,
+      cubeBlueColor:
+          Color.lerp(cubeBlueColor, other.cubeBlueColor, t) ?? Colors.black,
+      cubeGreenColor:
+          Color.lerp(cubeGreenColor, other.cubeGreenColor, t) ?? Colors.black,
+      cubeRedColor:
+          Color.lerp(cubeRedColor, other.cubeRedColor, t) ?? Colors.black,
+      cubeYellowColor:
+          Color.lerp(cubeYellowColor, other.cubeYellowColor, t) ?? Colors.black,
+      cubeOrangeColor:
+          Color.lerp(cubeOrangeColor, other.cubeOrangeColor, t) ?? Colors.black,
+      cubeWhiteColor:
+          Color.lerp(cubeWhiteColor, other.cubeWhiteColor, t) ?? Colors.black,
     );
   }
 }

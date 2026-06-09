@@ -146,6 +146,7 @@ class SettingsProvider extends ChangeNotifier {
   void setThemeMode(ThemeMode themeMode, {bool persistChange = true}) {
     _themeMode = themeMode;
 
+    // FIXME
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

@@ -32,6 +32,13 @@ class ThemeColors {
   static const Color pureWhite = Color(0xFFFFFFFF);
   static const Color pureBlack = Color(0xFF000000);
 
+  static const Color cubeBlue = Color(0xFF2785F2);
+  static const Color cubeGreen = Color(0xFF5CEE3F);
+  static const Color cubeRed = Color(0xFFE7292E);
+  static const Color cubeYellow = Color(0xFFFFFB00);
+  static const Color cubeOrange = Color(0xFFFF9900);
+  static const Color cubeWhite = Color(0xFFFAFAFA);
+
   static const MaterialColor turquoise =
       MaterialColor(_turquoisePrimaryValue, <int, Color>{
         100: Color(0xFFCCFDFF),
