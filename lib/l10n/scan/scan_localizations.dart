@@ -123,6 +123,30 @@ abstract class ScanLocalizations {
   /// In en, this message translates to:
   /// **'Select a color from the palette at the bottom and tap on the cube stickers to set their color. The face is determined by the centered color.'**
   String get new_cube_state_description;
+
+  /// Button to go to the next face when entering cube state manually
+  ///
+  /// In en, this message translates to:
+  /// **'Next face'**
+  String get next_face;
+
+  /// Button to go to the previous face when entering cube state manually
+  ///
+  /// In en, this message translates to:
+  /// **'Previous face'**
+  String get previous_face;
+
+  /// Button to save the entered cube state and start solving
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get save_state;
+
+  /// Button to review the entered cube state before saving
+  ///
+  /// In en, this message translates to:
+  /// **'Review'**
+  String get review;
 }
 
 class _ScanLocalizationsDelegate

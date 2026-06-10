@@ -20,4 +20,16 @@ class ScanLocalizationsEs extends ScanLocalizations {
   @override
   String get new_cube_state_description =>
       'Seleccione un color de la paleta en la parte inferior y toque las pegatinas del cubo para establecer su color. La cara se determina por el color central.';
+
+  @override
+  String get next_face => 'Siguiente cara';
+
+  @override
+  String get previous_face => 'Face anterior';
+
+  @override
+  String get save_state => 'Empezar';
+
+  @override
+  String get review => 'Revisar';
 }

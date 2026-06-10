@@ -118,6 +118,11 @@ class AppTheme extends ThemeExtension<AppTheme> {
       TextStyle(color: accentColor, fontSize: 16, fontWeight: FontWeight.w500);
   TextStyle get body =>
       TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w400);
+  TextStyle get disabledBody => TextStyle(
+    color: disabledTextColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
   TextStyle get invertedBody => TextStyle(
     color: invertedTextColor,
     fontSize: 16,
@@ -142,6 +147,11 @@ class AppTheme extends ThemeExtension<AppTheme> {
   );
   TextStyle get smallText =>
       TextStyle(color: textColor, fontSize: 12, fontWeight: FontWeight.w400);
+  TextStyle get disabledSmallText => TextStyle(
+    color: disabledTextColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
   TextStyle get invertedSmallText => TextStyle(
     color: invertedTextColor,
     fontSize: 12,

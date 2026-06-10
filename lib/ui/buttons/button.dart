@@ -1,4 +1,6 @@
 import 'package:cubelab/main.dart';
+import 'package:cubelab/theme/h_icon.dart';
+import 'package:cubelab/theme/icon_path.dart';
 import 'package:flutter/material.dart';
 
 enum ButtonType { filled, outlined, ghost }
@@ -6,24 +8,28 @@ enum ButtonType { filled, outlined, ghost }
 enum ButtonIconPosition { left, right }
 
 class Button extends StatelessWidget {
-  final String text;
-  final Widget? icon;
-  final ButtonType type;
-  final ButtonIconPosition iconPosition;
-  final bool disabled;
-  final VoidCallback? onPressed;
-  final EdgeInsetsGeometry padding;
-
   const Button({
     super.key,
     required this.text,
     this.icon,
+    this.iconColor,
     this.type = ButtonType.filled,
     this.iconPosition = ButtonIconPosition.left,
     this.disabled = false,
     this.onPressed,
     this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+    this.textStyle,
   });
+
+  final String text;
+  final IconPath? icon;
+  final Color? iconColor;
+  final ButtonType type;
+  final ButtonIconPosition iconPosition;
+  final bool disabled;
+  final VoidCallback? onPressed;
+  final EdgeInsetsGeometry padding;
+  final TextStyle? textStyle;
 
   bool get _isEnabled => !disabled && onPressed != null;
 
@@ -42,13 +48,26 @@ class Button extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (icon != null && iconPosition == ButtonIconPosition.left) ...[
-          icon!,
+          HIcon(
+            iconPath: icon!,
+            color: iconColor ?? textColor,
+            size: IconSize.medium,
+          ),
           const SizedBox(width: 8),
         ],
-        Text(text),
+        Text(
+          text,
+          style: (textStyle ?? appTheme.body).copyWith(
+            color: disabled ? disabledColor : textColor,
+          ),
+        ),
         if (icon != null && iconPosition == ButtonIconPosition.right) ...[
           const SizedBox(width: 8),
-          icon!,
+          HIcon(
+            iconPath: icon!,
+            color: iconColor ?? textColor,
+            size: IconSize.medium,
+          ),
         ],
       ],
     );

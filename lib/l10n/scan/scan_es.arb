@@ -3,5 +3,9 @@
   "menu_caption": "Escanear",
   "enter_manually": "Introducir manualmente",
   "new_cube_state": "Nuevo estado del cubo",
-  "new_cube_state_description": "Seleccione un color de la paleta en la parte inferior y toque las pegatinas del cubo para establecer su color. La cara se determina por el color central."
+  "new_cube_state_description": "Seleccione un color de la paleta en la parte inferior y toque las pegatinas del cubo para establecer su color. La cara se determina por el color central.",
+  "next_face": "Siguiente cara",
+  "previous_face": "Face anterior",
+  "save_state": "Empezar",
+  "review": "Revisar"
 }

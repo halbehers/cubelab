@@ -15,5 +15,21 @@
   "new_cube_state_description": "Select a color from the palette at the bottom and tap on the cube stickers to set their color. The face is determined by the centered color.",
   "@new_cube_state_description": {
     "description": "Description of how to enter cube state manually"
+  },
+  "next_face": "Next face",
+  "@next_face": {
+    "description": "Button to go to the next face when entering cube state manually"
+  },
+  "previous_face": "Previous face",
+  "@previous_face": {
+    "description": "Button to go to the previous face when entering cube state manually"
+  },
+  "save_state": "Get started",
+  "@save_state": {
+    "description": "Button to save the entered cube state and start solving"
+  },
+  "review": "Review",
+  "@review": {
+    "description": "Button to review the entered cube state before saving"
   }
 }
