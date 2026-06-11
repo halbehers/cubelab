@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:cubelab/cube/cube_color.dart';
-import 'package:cubelab/cube/cube_face_colors.dart';
 import 'package:cubelab/cube/cube_move.dart';
 import 'package:cubelab/cube/cube_phase.dart';
 
@@ -60,7 +59,7 @@ class CubeState {
     [5, 5],
   ];
 
-  factory CubeState.fromFacelets(List<CubeFaceColors> faces) {
+  factory CubeState.fromFacelets(List<List<CubeColor>> faces) {
     if (faces.length != 6) {
       throw ArgumentError('Expected 6 faces, got ${faces.length}');
     }
@@ -68,14 +67,13 @@ class CubeState {
     final state = CubeState._();
     final centerColors = List<CubeColor>.filled(6, CubeColor.white);
     for (int i = 0; i < 6; i++) {
-      centerColors[i] = faces[i].colors[4];
+      centerColors[i] = faces[i][4];
     }
 
     for (int i = 0; i < 8; i++) {
       final slotColors = List.generate(
         3,
-        (j) => faces[_cornerFaceletFaces[i][j]]
-            .colors[_cornerFaceletIndices[i][j]],
+        (j) => faces[_cornerFaceletFaces[i][j]][_cornerFaceletIndices[i][j]],
       );
       final cornerId = _findCornerId(slotColors, centerColors);
       state.cornersPerm[i] = cornerId;
@@ -89,7 +87,7 @@ class CubeState {
     for (int i = 0; i < 12; i++) {
       final slotColors = List.generate(
         2,
-        (j) => faces[_edgeFaceletFaces[i][j]].colors[_edgeFaceletIndices[i][j]],
+        (j) => faces[_edgeFaceletFaces[i][j]][_edgeFaceletIndices[i][j]],
       );
       final edgeId = _findEdgeId(slotColors, centerColors);
       state.edgesPerm[i] = edgeId;
@@ -169,6 +167,38 @@ class CubeState {
     clone.edgesPerm.setAll(0, edgesPerm);
     clone.edgesOri.setAll(0, edgesOri);
     return clone;
+  }
+
+  List<List<CubeColor>> toFacelets() {
+    final facelets = List.generate(6, (_) => List.filled(9, CubeColor.white));
+
+    for (int f = 0; f < 6; f++) {
+      facelets[f][4] = CubeColor.values[f];
+    }
+
+    for (int i = 0; i < 8; i++) {
+      final cornerId = cornersPerm[i];
+      final ori = cornersOri[i];
+      for (int k = 0; k < 3; k++) {
+        final face = _cornerFaceletFaces[i][k];
+        final idx = _cornerFaceletIndices[i][k];
+        facelets[face][idx] =
+            CubeColor.values[_cornerFaceletFaces[cornerId][(k - ori + 3) % 3]];
+      }
+    }
+
+    for (int i = 0; i < 12; i++) {
+      final edgeId = edgesPerm[i];
+      final ori = edgesOri[i];
+      for (int k = 0; k < 2; k++) {
+        final face = _edgeFaceletFaces[i][k];
+        final idx = _edgeFaceletIndices[i][k];
+        facelets[face][idx] =
+            CubeColor.values[_edgeFaceletFaces[edgeId][(k + ori) % 2]];
+      }
+    }
+
+    return facelets;
   }
 
   bool isSolved() {

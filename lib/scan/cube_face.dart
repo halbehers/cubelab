@@ -93,17 +93,15 @@ class _CubeFaceState extends State<CubeFace> {
                       ),
                       const SizedBox(height: 8.0),
                       // The grid
-                      Expanded(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: GridView.count(
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 8.0,
-                            mainAxisSpacing: 8.0,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: buildStickers(),
-                          ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: GridView.count(
+                          crossAxisCount: 3,
+                          crossAxisSpacing: 8.0,
+                          mainAxisSpacing: 8.0,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: buildStickers(),
                         ),
                       ),
                       const SizedBox(height: 8.0),

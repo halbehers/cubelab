@@ -7,5 +7,7 @@
   "next_face": "Face suivante",
   "previous_face": "Face précédente",
   "save_state": "Commencer",
-  "review": "Vérifier"
+  "review": "Vérifier",
+  "error_invalid_color_count": "Chaque couleur doit apparaître exactement 9 fois.",
+  "error_invalid_geometry": "Cette combinaison n'est pas un état de cube valide."
 }

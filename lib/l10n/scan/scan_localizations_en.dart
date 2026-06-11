@@ -32,4 +32,12 @@ class ScanLocalizationsEn extends ScanLocalizations {
 
   @override
   String get review => 'Review';
+
+  @override
+  String get error_invalid_color_count =>
+      'Each color must appear exactly 9 times.';
+
+  @override
+  String get error_invalid_geometry =>
+      'This combination is not a valid cube state.';
 }

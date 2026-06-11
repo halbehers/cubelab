@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:cubelab/cube/cube_face.dart';
+import 'package:cubelab/cube/cube_face_move.dart';
 import 'package:cubelab/cube/cube_state.dart';
 
 class CubeMove {
@@ -47,7 +47,7 @@ class CubeMove {
   ];
 
   static CubeMove fromString(String move) {
-    int face = CubeFace.indexFromName(move[0]);
+    int face = CubeFaceMove.indexFromName(move[0]);
     int rotation = 1; // default is 90 degrees clockwise
     if (move.length > 1) {
       if (move[1] == '2') {
@@ -91,7 +91,7 @@ class CubeMove {
 
   @override
   String toString() {
-    String move = CubeFace.names[face];
+    String move = CubeFaceMove.names[face];
     if (rotation == 2) {
       move += '2';
     } else if (rotation == 3) {

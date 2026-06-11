@@ -1,5 +1,5 @@
 {
   "java.project.sourcePaths": ["lib"],
   "editor.formatOnSave": true,
-  "cSpell.words": ["cubelab", "Facelet", "Facelets"]
+  "cSpell.words": ["cubelab", "Cubie", "cubies", "Facelet", "Facelets"]
 }

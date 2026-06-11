@@ -1,14 +1,14 @@
 import 'package:cubelab/cube/cube_color.dart';
+import 'package:cubelab/cube/cube_state.dart';
+import 'package:cubelab/helpers/logger.dart';
 import 'package:cubelab/main.dart';
 import 'package:cubelab/scan/cube_face.dart';
-import 'package:cubelab/theme/h_icon.dart';
 import 'package:cubelab/theme/icon_path.dart';
 import 'package:cubelab/ui/buttons/button.dart';
+import 'package:cubelab/ui/cube_3d.dart';
 import 'package:cubelab/ui/custom_bottom_sheet.dart';
 import 'package:cubelab/l10n/scan/scan_localizations.dart';
 import 'package:flutter/material.dart' hide TextField;
-
-final _formKey = GlobalKey<FormState>();
 
 enum CubeStateFormState { initial, filled, error }
 
@@ -16,10 +16,12 @@ class CubeStateForm extends StatefulWidget {
   const CubeStateForm({
     super.key,
     required this.onClose,
+    this.onStateCreated,
     this.onFormStateChanged,
   });
 
   final void Function() onClose;
+  final void Function(CubeState state)? onStateCreated;
   final void Function(CubeStateFormState state)? onFormStateChanged;
 
   @override
@@ -27,10 +29,13 @@ class CubeStateForm extends StatefulWidget {
 }
 
 class _CubeStateFormState extends State<CubeStateForm> {
+  final _formKey = GlobalKey<FormState>();
   CubeStateFormState _state = CubeStateFormState.initial;
   int currentFaceIndex = 0;
   late Map<int, List<CubeColor>> faceColors;
   late CubeColor selectedColor;
+  CubeState? cubeState;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -43,8 +48,29 @@ class _CubeStateFormState extends State<CubeStateForm> {
   }
 
   void _onSubmit(BuildContext context) {
-    if (_validate()) {
-      widget.onClose();
+    final t = ScanLocalizations.of(context)!;
+
+    if (!_validate()) {
+      setState(() => _errorMessage = t.error_invalid_color_count);
+      return;
+    }
+
+    final faces = List.generate(6, (i) => faceColors[i]!);
+
+    try {
+      final state = CubeState.fromFacelets(faces);
+      widget.onStateCreated?.call(state);
+      getLogger().d('cube state: $state');
+      setState(() {
+        _errorMessage = null;
+        cubeState = state;
+      });
+    } on FormatException {
+      setState(() {
+        _state = CubeStateFormState.error;
+        _errorMessage = t.error_invalid_geometry;
+      });
+      widget.onFormStateChanged?.call(CubeStateFormState.error);
     }
   }
 
@@ -106,8 +132,17 @@ class _CubeStateFormState extends State<CubeStateForm> {
         onColorSelected: (color) => setState(() => selectedColor = color),
         onStickerTap: (stickerIndex) => setState(() {
           faceColors[index]![stickerIndex] = selectedColor;
+          _errorMessage = null;
         }),
       ),
+    );
+  }
+
+  Widget buildReviewPanel() {
+    getLogger().d("buildReviewPanel");
+    return Padding(
+      padding: const EdgeInsets.all(32.0),
+      child: Cube3D(cubeState: cubeState!),
     );
   }
 
@@ -124,66 +159,79 @@ class _CubeStateFormState extends State<CubeStateForm> {
       isSubmittable: false,
       child: SafeArea(
         top: false,
-        child: Form(
-          key: _formKey,
-          child: Column(
-            spacing: 32.0,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16.0,
-                  bottom: 0.0,
-                  left: 32.0,
-                  right: 32.0,
-                ),
-                child: Text(
-                  t.new_cube_state_description,
-                  style: appTheme.subduedBody,
-                ),
-              ),
-              Expanded(child: cubeFaces[currentFaceIndex]),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: cubeState == null
+            ? Form(
+                key: _formKey,
+                child: Column(
+                  spacing: 32.0,
                   children: [
-                    Button(
-                      text: t.previous_face,
-                      onPressed: () => setState(() {
-                        if (currentFaceIndex > 0) currentFaceIndex--;
-                      }),
-                      disabled: currentFaceIndex == 0,
-                      icon: IconPath.arrowLeft,
-                      iconPosition: ButtonIconPosition.left,
-                      type: ButtonType.ghost,
-                      textStyle: appTheme.smallText,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 16.0,
+                        bottom: 0.0,
+                        left: 32.0,
+                        right: 32.0,
+                      ),
+                      child: Text(
+                        t.new_cube_state_description,
+                        style: appTheme.subduedBody,
+                      ),
                     ),
-                    if (currentFaceIndex < 5)
-                      Button(
-                        text: t.next_face,
-                        onPressed: () => setState(() {
-                          if (currentFaceIndex < 5) currentFaceIndex++;
-                        }),
-                        icon: IconPath.arrowRight,
-                        iconPosition: ButtonIconPosition.right,
-                        type: ButtonType.ghost,
-                        textStyle: appTheme.smallText,
-                        disabled: currentFaceIndex == 5,
+                    Expanded(child: cubeFaces[currentFaceIndex]),
+                    if (_errorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                        child: Text(
+                          _errorMessage!,
+                          style: appTheme.smallText.copyWith(
+                            color: appTheme.dangerColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    if (currentFaceIndex == 5)
-                      Button(
-                        text: t.review,
-                        onPressed: () => _onSubmit(context),
-                        icon: IconPath.check,
-                        iconPosition: ButtonIconPosition.right,
-                        type: ButtonType.outlined,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Button(
+                            text: t.previous_face,
+                            onPressed: () => setState(() {
+                              if (currentFaceIndex > 0) currentFaceIndex--;
+                            }),
+                            disabled: currentFaceIndex == 0,
+                            icon: IconPath.arrowLeft,
+                            iconPosition: ButtonIconPosition.left,
+                            type: ButtonType.ghost,
+                            textStyle: appTheme.smallText,
+                          ),
+                          if (currentFaceIndex < 5)
+                            Button(
+                              text: t.next_face,
+                              onPressed: () => setState(() {
+                                if (currentFaceIndex < 5) currentFaceIndex++;
+                              }),
+                              icon: IconPath.arrowRight,
+                              iconPosition: ButtonIconPosition.right,
+                              type: ButtonType.ghost,
+                              textStyle: appTheme.smallText,
+                              disabled: currentFaceIndex == 5,
+                            ),
+                          if (currentFaceIndex == 5)
+                            Button(
+                              text: t.review,
+                              onPressed: () => _onSubmit(context),
+                              icon: IconPath.check,
+                              iconPosition: ButtonIconPosition.right,
+                              type: ButtonType.outlined,
+                            ),
+                        ],
                       ),
+                    ),
                   ],
                 ),
-              ),
-            ],
-          ),
-        ),
+              )
+            : buildReviewPanel(),
       ),
     );
   }

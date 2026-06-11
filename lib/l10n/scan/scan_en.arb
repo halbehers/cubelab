@@ -31,5 +31,13 @@
   "review": "Review",
   "@review": {
     "description": "Button to review the entered cube state before saving"
+  },
+  "error_invalid_color_count": "Each color must appear exactly 9 times.",
+  "@error_invalid_color_count": {
+    "description": "Error message for invalid color count in cube scan"
+  },
+  "error_invalid_geometry": "This combination is not a valid cube state.",
+  "@error_invalid_geometry": {
+    "description": "Error message for invalid geometry in cube scan"
   }
 }

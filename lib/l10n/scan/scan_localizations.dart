@@ -147,6 +147,18 @@ abstract class ScanLocalizations {
   /// In en, this message translates to:
   /// **'Review'**
   String get review;
+
+  /// Error message for invalid color count in cube scan
+  ///
+  /// In en, this message translates to:
+  /// **'Each color must appear exactly 9 times.'**
+  String get error_invalid_color_count;
+
+  /// Error message for invalid geometry in cube scan
+  ///
+  /// In en, this message translates to:
+  /// **'This combination is not a valid cube state.'**
+  String get error_invalid_geometry;
 }
 
 class _ScanLocalizationsDelegate
